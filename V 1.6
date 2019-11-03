@@ -1,0 +1,371 @@
+#include <excel.au3>
+#include <File.au3>
+#include <Array.au3>
+#include <MsgBoxConstants.au3>
+#include <StringConstants.au3>
+#include <ButtonConstants.au3>
+#include <EditConstants.au3>
+#include <GUIConstantsEx.au3>
+#include <StaticConstants.au3>
+#include <WindowsConstants.au3>
+#include <AutoItConstants.au3>
+#include <StaticConstants.au3>
+#include <GUIConstantsEx.au3>
+#include <WindowsConstants.au3>
+#Include <GuiButton.au3>
+#Include <FehlerLog.au3>
+
+Global $Counter
+$oExcel = _Excel_Open()
+$oWorkbook = _Excel_BookOpen($oExcel, @ScriptDir & "\Infocenter-Fahrerbildschirm.xlsm")
+$var =  "C:\Users\Max\Documents\Arbeit\Test.xlsx)"
+WinActivate("[CLASS:EXCEL")
+;$oExcel = _Excel_Open()
+
+HotKeySet("{MEDIA_NEXT}", "Vor")
+HotKeySet("{MEDIA_PREV}", "Zuruck")
+;HotKeySet("{F3}", "Tour1")
+;HotKeySet("{F4}", "Tour2")
+;HotKeySet("{F5}", "Tour3")
+;HotKeySet("{F6}", "Tour4")
+;HotKeySet("{F7}", "Tour5")
+HotKeySet("{ESC}", "Schließen")
+
+Func Vor()
+   WinActivate("[CLASS:EXCEL")
+   HotKeySet("{MEDIA_NEXT}")
+
+   if $Counter = 4 Then
+
+ToolTip ( "Aktiv: Morgenexpress" , 0, 0 )
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$Counter = 0
+
+ElseIf $Counter = 3 Then
+
+ToolTip ( "Aktiv: Abholung" , 0, 0 )
+$Counter += 1
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("5 Abholung")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("5 Abholung")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("5 Abholung")
+Send("{Enter}")
+Sleep (200)
+
+ElseIf $Counter = 2 Then
+
+ToolTip ( "Aktiv: Mittagstour" , 0, 0 )
+$Counter += 1
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+
+ElseIf $Counter = 1 Then
+
+ToolTip ( "Aktiv: 11 Uhr-Tour" , 0, 0 )
+$Counter += 1
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("3 11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("3 11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("3 11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+
+ElseIf $Counter = 0 Then
+
+ToolTip ( "Aktiv: Frühtour" , 0, 0 )
+$Counter += 1
+$oExcel = _Excel_Open()
+Sleep(200)
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+
+EndIf
+
+HotKeySet("{MEDIA_NEXT}", "Vor")
+
+EndFunc
+
+Func Zuruck()
+   WinActivate("[CLASS:EXCEL")
+   HotKeySet("{MEDIA_PREV}")
+
+if $Counter = 1 Then
+
+ToolTip ( "Aktiv: Morgenexpress" , 0, 0 )
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$Counter -= 1
+
+ElseIf $Counter = 4 Then
+
+ToolTip ( "Aktiv: Mittagstour" , 0, 0 )
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$Counter -= 1
+
+ElseIf $Counter = 3 Then
+
+ToolTip ( "Aktiv: 11 Uhr Tour" , 0, 0 )
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("3 11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("3 11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("3 11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$Counter -= 1
+
+ElseIf $Counter = 2 Then
+
+ToolTip ( "Aktiv: Frühtour" , 0, 0 )
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$Counter -= 1
+
+EndIf
+
+HotKeySet("{MEDIA_PREV}", "Zuruck")
+EndFunc
+
+
+;1 Morgenexpress
+Func Tour1()
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("1 Morgen-Express")
+Send("{Enter}")
+Sleep (200)
+EndFunc
+
+
+;2 Frühtour
+Func Tour2()
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("2 Frühtour")
+Send("{Enter}")
+Sleep (200)
+EndFunc
+
+;3 11Uhr-Tour
+Func Tour3()
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("11Uhr-Tour")
+Send("{Enter}")
+Sleep (200)
+EndFunc
+
+;4 Mittagstour
+Func Tour4()
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("4 Mittagstour")
+Send("{Enter}")
+Sleep (200)
+EndFunc
+
+;5 Abholung
+Func Tour5()
+$oExcel = _Excel_Open()
+$oExcel.Sheets("Kunden pro Tour").Select
+Sleep(200)
+$oExcel.ActiveSheet.Range("B2").Select
+Sleep(200)
+Send ("5 Abholung")
+Send("{Enter}")
+Sleep (200)
+$oExcel.Sheets("Fahrerinfo2").Select
+$oExcel.ActiveSheet.Range("B2").Select
+Send ("5 Abholung")
+Send("{Enter}")
+Sleep (200)
+$oExcel.ActiveSheet.Range("K2").Select
+Send ("5 Abholung")
+Send("{Enter}")
+Sleep (200)
+EndFunc
+
+Func Schließen()
+    Exit
+ EndFunc
+
+While 1
+	$nMsg = GUIGetMsg()
+Switch $nMsg
+Case $GUI_EVENT_CLOSE
+   Exit
+
+EndSwitch
+WEnd
+
